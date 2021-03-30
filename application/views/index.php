@@ -21,7 +21,7 @@
         <h1 class="text-success">Sign Up</h1>
         <p><strong>It's quick and easy</strong></p>
     </div>
-    <form class="card-body" action="Welcome/register" method="post" onsubmit="return clickBut()">
+    <form class="card-body" action="Welcome/register" method="post">
         <h6 class="text-left mb-1 mt-2"><strong>Name</strong></h6>
         <div>
             <p id="fName"></p>

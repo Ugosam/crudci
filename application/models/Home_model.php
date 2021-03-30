@@ -10,6 +10,43 @@ class Home_model extends CI_Model {
 
 
 
+    public function Verify($Ugochi){
+      $condition = "email =" . "'" . $Ugochi['email'] . "'";
+      $this->db->select('*');
+      $this->db->from('users');
+      $this->db->where($condition);
+      $this->db->limit(1);
+      $query = $this->db->get();
+      
+      if ($query->num_rows() > 0) {
+      return true;
+      } else {
+      return false;
+      }
+    }
+
+    public function insert($Ugochi){
+      return $this->db->insert('users', $Ugochi);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
      // login user
     public function signin($user) {
 

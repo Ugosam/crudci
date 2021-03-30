@@ -40,7 +40,6 @@ class Welcome extends CI_Controller {
 	// create a registration method
 	public function register(){
 		// set the varaibles for each html elemenst that comes into the controller from the view 
-
 		$Ugochi['fname'] = $this->input->post('fname');
 		$Ugochi['lname'] = $this->input->post('lname');
 		$Ugochi['otherName'] = $this->input->post('otherName');
@@ -51,11 +50,35 @@ class Welcome extends CI_Controller {
 		$Ugochi['address'] = $this->input->post('address');
 		$Ugochi['country'] = $this->input->post('country');
 		$Ugochi['phoneNo'] = $this->input->post('phoneNo');
-		$Ugochi['Email'] = $this->input->post('Email');
+		$Ugochi['email'] = $this->input->post('Email');
 		$Ugochi['pass'] = $this->input->post('pass');
-		$Ugochi['copass'] = $this->input->post('copass');
 
-		echo json_encode($Ugochi);
+		if (!empty($Ugochi['fname']) &&  !empty($Ugochi['lname']) &&  !empty($Ugochi['otherName']) &&  !empty($Ugochi['day']) &&  !empty($Ugochi['month']) &&  !empty($Ugochi['year']) &&  !empty($Ugochi['gender']) &&  !empty($Ugochi['address']) &&  !empty($Ugochi['country']) &&  !empty($Ugochi['phoneNo']) &&  !empty($Ugochi['email']) &&  !empty($Ugochi['pass'])) {
+			
+			// I'm trying to make sure that the user emails is not doubled.
+			$query = $this->Home_model->Verify($Ugochi);
+			if ($query == true) {
+				$response['error'] = true;
+				$response['message'] = 'Email Already Exist';
+			}
+			else{
+
+				// Save the user in the database 
+				$insert = $this->Home_model->insert($Ugochi);
+
+				$response['error'] = false;
+				$response['message'] = 'User Added Successfully';
+			}
+
+		}
+		else{
+			$response['error'] = true;
+			$response['message'] = 'All field are required';
+		}
+
+		
+
+		echo json_encode($response);
 
 	}
 
