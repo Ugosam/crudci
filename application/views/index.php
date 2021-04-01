@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/bootstrap.min.css">
     <link rel="stylesheet" href="assets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Register</title>
 </head>
 <body class="bg-dark">
@@ -21,7 +22,7 @@
         <h1 class="text-success">Sign Up</h1>
         <p><strong>It's quick and easy</strong></p>
     </div>
-    <form class="card-body" action="Welcome/register" method="post">
+    <form id="reg" class="card-body" action="Welcome/register" method="post">
         <h6 class="text-left mb-1 mt-2"><strong>Name</strong></h6>
         <div>
             <p id="fName"></p>
@@ -169,10 +170,67 @@
             <p class="text-danger" id="errorMessage"></p>
             <input type="password" placeholder="Confirm password" id="copass" name="copass" class="form-control mt-2" onkeyup="myFunction()">
         </div>
-        <button class="btn btn-lg form-control space btn-outline-success mt-2" type="submit">Submit</button>
+        <div id="error"></div>
+        <button id="submit" class="btn btn-lg form-control space btn-outline-success mt-2" type="submit">Submit</button>
     </form>
     </div>
     </center>
     <script src="assets/fm.js"></script>
+<script type="text/javascript">
+    
+// login
+$(document).ready(function() {
+
+    $("#reg").on("submit", function(event) {
+        event.preventDefault();
+
+
+        var fname =  $("#fname").val();
+        var lname = $("#lname").val();
+        var otherName =  $("#otherName").val();
+        var day = $("#day").val();
+        var month =  $("#month").val();
+        var year = $("#year").val();
+        var month =  $("#month").val();
+        var year = $("#year").val();
+        var gender =  $("#gender").val();
+        var country = $("#country").val();
+        var phoneNo = $("#phoneNo").val();
+        var Email = $("#Email").val();
+        var pass = $("#pass").val();
+        var form = $(this);
+
+            $.ajax({
+                type: form.attr('method'),
+                url: form.attr('action'),
+                data: form.serialize(),
+                dataType: 'json',
+                beforeSend: function() {
+                    $("#error").fadeOut();
+                    $("#submit").html('PLEASE WAIT.......');
+                },
+                success: function(response) {
+                    if (response.error == false) {
+                         document.getElementById("reg").reset();
+                       $("#error").fadeIn(1000, function() {
+                            $("#error").html('<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; ' + response.message + ' !</div>');
+                            $("#submit").html('Submit');
+                        });
+                    } else {
+                        $("#error").fadeIn(1000, function() {
+                            $("#error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; ' + response.message + ' !</div>');
+                            $("#submit").html('Submit');
+                        });
+                    }
+                }
+
+            });
+            
+
+    });
+});
+
+
+</script>
 </body>
 </html>
