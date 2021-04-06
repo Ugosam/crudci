@@ -11,7 +11,7 @@ class Home_model extends CI_Model {
 
 
     public function Verify($Ugochi){
-      $condition = "email =" . "'" . $Ugochi['email'] . "'";
+      $condition = array('email'=> $Ugochi['email']);
       $this->db->select('*');
       $this->db->from('users');
       $this->db->where($condition);
