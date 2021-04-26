@@ -13,10 +13,11 @@
     <div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a href="" class="navbar-brand mt-auto"><span class="text-danger big">M</span><span class="lit">Nerds</span></a>
-            <a href="login.html" class="ml-auto nav-item"><button class="btn btn-sm btn-outline-primary">Login</button></a>
+            <a href="login" class="ml-auto nav-item"><button class="btn btn-sm btn-outline-primary">Login</button></a>
         </nav>
         </div>
     <center>
+    
     <div class="card col-lg-5 mt-1">
     <div class="card-header">
         <h1 class="text-success">Sign Up</h1>
@@ -155,7 +156,7 @@
         <h6 class="text-left mb-1 mt-2"><strong>Contact</strong></h6>
         <div>
             <p class="text-danger" id="phone"></p>
-            <input type="tel" placeholder="Phone No." id="phoneNo" name="phoneNo" class="form-control"  onkeyup="invaNumber()">
+            <input type="tel" placeholder="Phone No." id="phoneNo" name="phoneNo" class="form-control">
         </div>
         <div>
             <p id="email"></p>
@@ -174,6 +175,9 @@
         <button id="submit" class="btn btn-lg form-control space btn-outline-success mt-2" type="submit">Submit</button>
     </form>
     </div>
+    <div id="response">
+    <h2>hii</h2>
+    </div>
     </center>
     <script src="assets/fm.js"></script>
 <script type="text/javascript">
@@ -181,7 +185,7 @@
 // login
 $(document).ready(function() {
 
-    $("#reg").on("submit", function(event) {
+    $("#r").on("submit", function(event) {
         event.preventDefault();
 
 

@@ -51,4 +51,20 @@ function emailCheck() {
         document.getElementById("email").innerHTML = "Invalid Email"
         event.preventDefault()
     }
+
+    document.getElementById("submit").addEventListener("click", function(event){
+        event.preventDefault();
+        
+
+        var xhttp = new XMLHttpRequest();
+         const FD = new FormData( document.getElementById('reg') );
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+           document.getElementById("response").innerHTML = this.responseText
+           
+          }
+        };
+        xhttp.open("POST", "Welcome/register", true);
+        xhttp.send(FD);
+      });
 }
