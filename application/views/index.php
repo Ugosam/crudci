@@ -185,7 +185,7 @@
 // login
 $(document).ready(function() {
 
-    $("#r").on("submit", function(event) {
+    $("#reg").on("submit", function(event) {
         event.preventDefault();
 
 
